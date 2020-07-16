@@ -47,7 +47,6 @@ public abstract class AbstractTopicRegistrar implements TopicRegistrar {
         }
     }
 
-
     /**
      * Create all topics in a catalogue.
      *
@@ -143,8 +142,9 @@ public abstract class AbstractTopicRegistrar implements TopicRegistrar {
 
     @Override
     public void close() {
-        if (getKafkaClient() != null) {
-            getKafkaClient().close();
+        AdminClient client = getKafkaClient();
+        if (client != null) {
+            client.close();
         }
     }
 

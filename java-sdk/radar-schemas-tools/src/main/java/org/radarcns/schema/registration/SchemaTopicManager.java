@@ -1,6 +1,7 @@
 package org.radarcns.schema.registration;
 
 import static org.apache.kafka.common.config.ConfigResource.Type.TOPIC;
+import static org.radarcns.schema.registration.KafkaTopics.KafkaTopicsCommand.adminClientProperties;
 
 import io.confluent.kafka.schemaregistry.storage.exceptions.SerializationException;
 import io.confluent.kafka.schemaregistry.storage.serialization.SchemaRegistrySerializer;
@@ -11,13 +12,13 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.validation.constraints.NotNull;
-import kafka.zk.ZkVersion;
 import net.sourceforge.argparse4j.impl.action.StoreConstArgumentAction;
 import net.sourceforge.argparse4j.inf.ArgumentParser;
 import net.sourceforge.argparse4j.inf.Namespace;
@@ -36,7 +37,6 @@ import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.PartitionInfo;
 import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.config.ConfigResource;
-import org.apache.zookeeper.KeeperException;
 import org.radarcns.schema.CommandLineApp;
 import org.radarcns.schema.util.SubCommand;
 import org.slf4j.Logger;
@@ -58,11 +58,13 @@ public class SchemaTopicManager implements Closeable {
 
     /**
      * Schema topic manager.
-     * @param zookeeper zookeeper hosts and ports, comma-separated
+     * @param adminProperties Kafka Admin properties
      * @param storage storage medium to read and write backups from and to.
      */
-    public SchemaTopicManager(@NotNull String zookeeper, @NotNull SchemaBackupStorage storage) {
-        topics = new KafkaTopics(zookeeper);
+    public SchemaTopicManager(
+            @NotNull Properties adminProperties,
+            @NotNull SchemaBackupStorage storage) {
+        topics = new KafkaTopics(adminProperties);
         this.storage = storage;
         serializer = new SchemaRegistrySerializer();
         topicResource = new ConfigResource(TOPIC, TOPIC_NAME);
@@ -201,13 +203,10 @@ public class SchemaTopicManager implements Closeable {
      * @throws RuntimeException storage failure or any other error.
      * @throws IllegalStateException if this manager was not initialized or schema registry was
      *                               running
-     * @throws KeeperException if no connection with Zookeeper could be made.
      */
     public void ensure(short replication, Duration timeout)
-            throws InterruptedException, ExecutionException, SerializationException, IOException,
-            KeeperException {
+            throws InterruptedException, ExecutionException, SerializationException, IOException {
         ensureInitialized();
-        ensureSchemaRegistryNotRunning();
 
         boolean topicExists = topics.getTopics().contains(TOPIC_NAME);
         if (topicExists) {
@@ -326,12 +325,10 @@ public class SchemaTopicManager implements Closeable {
      * @throws ExecutionException if the topic configuration cannot be written
      * @throws IllegalStateException if this manager was not initialized or if the
      *                               schema registry is running.
-     * @throws KeeperException if no connection with Zookeeper could be made.
      */
     public void restoreBackup(short replication)
-            throws IOException, ExecutionException, InterruptedException, KeeperException {
+            throws IOException, ExecutionException, InterruptedException {
         ensureInitialized();
-        ensureSchemaRegistryNotRunning();
         SchemaTopicBackup storeTopic;
         try {
             storeTopic = storage.load();
@@ -357,29 +354,8 @@ public class SchemaTopicManager implements Closeable {
         commitBackup(storeTopic);
     }
 
-    private void ensureSchemaRegistryNotRunning() throws KeeperException, InterruptedException {
-        try {
-            if (topics.getZkClient().pathExists("/schema_registry/schema_registry_master")) {
-                throw new IllegalStateException(
-                        "Cannot restore schemas while the schema registry is running.");
-            }
-        } catch (Exception ex) {
-            logger.error("Cannot check whether schema registry master exists", ex);
-        }
-        logger.info("No zookeeper nodes for Schema Registry.");
-    }
-
-    private void resetSchemaRegistryId() throws KeeperException, InterruptedException {
-        try {
-            topics.getZkClient().deletePath("/schema_registry/schema_registry_id",
-                    ZkVersion.MatchAnyVersion(), false);
-        } catch (Exception ex) {
-            logger.info("No schema registry ID listed in zookeeper.");
-        }
-    }
-
     private void commitBackup(SchemaTopicBackup backup)
-            throws ExecutionException, InterruptedException, KeeperException {
+            throws ExecutionException, InterruptedException {
         AlterConfigsResult alterResult = topics.getKafkaClient()
                 .incrementalAlterConfigs(Map.of(topicResource, backup.getConfig().entries().stream()
                         .map(e -> new AlterConfigOp(e, OpType.SET))
@@ -398,7 +374,6 @@ public class SchemaTopicManager implements Closeable {
         }
 
         alterResult.all().get();
-        resetSchemaRegistryId();
     }
 
     /**
@@ -427,12 +402,20 @@ public class SchemaTopicManager implements Closeable {
 
         @Override
         public int execute(Namespace options, CommandLineApp app) {
-            String zookeeper = options.getString("zookeeper");
+            Properties properties;
+            try {
+                properties = adminClientProperties(
+                    options.getString("bootstrap-servers"),
+                    options.getString("property-file"));
+            } catch (IOException ex) {
+                logger.error("Failed to read properties file: {}", ex.toString());
+                return 1;
+            }
 
             JsonSchemaBackupStorage jsonStorage = new JsonSchemaBackupStorage(
                     Paths.get(options.getString("file")));
 
-            try (SchemaTopicManager manager = new SchemaTopicManager(zookeeper, jsonStorage)) {
+            try (SchemaTopicManager manager = new SchemaTopicManager(properties, jsonStorage)) {
                 manager.initialize(options.getInt("brokers"));
 
                 Duration timeout = Duration.ofSeconds(options.getInt("timeout"));
@@ -500,8 +483,13 @@ public class SchemaTopicManager implements Closeable {
                     .help("number of brokers that are expected to be available.")
                     .type(Integer.class)
                     .setDefault(3);
-            parser.addArgument("zookeeper")
-                    .help("zookeeper hosts and ports, comma-separated");
+
+            parser.addArgument("-f", "--property-file")
+                .help("Admin client property file")
+                .type(String.class);
+            parser.addArgument("-s", "--bootstrap-servers")
+                .help("Kafka hosts and ports, comma-separated")
+                .type(String.class);
             SubCommand.addRootArgument(parser);
         }
     }

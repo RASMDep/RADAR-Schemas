@@ -21,6 +21,8 @@ import static org.radarcns.schema.CommandLineApp.matchTopic;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -37,6 +39,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.BufferedSink;
+import org.jetbrains.annotations.NotNull;
 import org.radarbase.config.ServerConfig;
 import org.radarbase.producer.rest.RestClient;
 import org.radarbase.producer.rest.SchemaRetriever;
@@ -87,6 +90,35 @@ public class SchemaRegistry {
         this.schemaClient = new SchemaRetriever(this.httpClient);
     }
 
+    public boolean waitForRegistry(Duration timeout) throws InterruptedException {
+        if (canConnect()) {
+            return true;
+        }
+        Instant endTime = Instant.now().plus(timeout);
+        logger.info("Cannot connect to schema registry. Testing again until {}", endTime);
+
+        while (Instant.now().isBefore(endTime)) {
+            Thread.sleep(1000L);
+            if (canConnect()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean canConnect() {
+        try (Response response = this.httpClient.request("subjects")) {
+            String contentLength = response.header("Content-Length");
+            if (response.isSuccessful() && contentLength != null && !contentLength.equals("0")) {
+                return true;
+            }
+        } catch (IOException ex) {
+            logger.debug("Schema registry is not ready: {}", ex.toString());
+        }
+        return false;
+    }
+
     /**
      * Register all schemas in a source catalogue. Stream and connector sources are ignored.
      * @param catalogue schema catalogue to read schemas from
@@ -135,7 +167,7 @@ public class SchemaRegistry {
                         }
 
                         @Override
-                        public void writeTo(BufferedSink sink) throws IOException {
+                        public void writeTo(@NotNull BufferedSink sink) throws IOException {
                             sink.writeUtf8("{\"compatibility\": \"");
                             sink.writeUtf8(compatibility.name());
                             sink.writeUtf8("\"}");
@@ -179,6 +211,7 @@ public class SchemaRegistry {
             String url = options.get("schemaRegistry");
             String apiKey = options.getString("api_key");
             String apiSecret = options.getString("api_secret");
+            int timeout = options.getInt("timeout");
             try {
                 SchemaRegistry registration;
                 if (isNullOrEmpty(apiKey) || isNullOrEmpty(apiSecret)) {
@@ -187,6 +220,10 @@ public class SchemaRegistry {
                 } else {
                     logger.info("Initializing SchemaRegistration with authentication...");
                     registration = new SchemaRegistry(url, apiKey, apiSecret);
+                }
+                if (!registration.waitForRegistry(Duration.ofSeconds(timeout))) {
+                    logger.error("Cannot connect to schema registry {}", url);
+                    return 1;
                 }
 
                 boolean forced = options.getBoolean("force");
@@ -222,12 +259,20 @@ public class SchemaRegistry {
             } catch (MalformedURLException ex) {
                 logger.error("Schema registry URL {} is invalid: {}", url, ex.toString());
                 return 1;
+            } catch (InterruptedException e) {
+                logger.error("Interrupted while waiting for schema registry.");
+                Thread.currentThread().interrupt();
+                return 1;
             }
         }
 
         @Override
         public void addParser(ArgumentParser parser) {
             parser.description("Register schemas in the schema registry.");
+            parser.addArgument("-t", "--timeout")
+                    .help("timeout in seconds after which to give up contacting the schema registry")
+                    .type(Integer.class)
+                    .setDefault(120);
             parser.addArgument("-f", "--force")
                     .help("force registering schema, even if it is incompatible")
                     .action(Arguments.storeTrue());

@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Create topics
-echo "Creating RADAR-base topics on Confluent Cloud..."
+echo "Creating RADAR-base topics..."
 
-if ! radar-schemas-tools cc-topic-create -c $CC_CONFIG_FILE_PATH -p $KAFKA_NUM_PARTITIONS -r $KAFKA_NUM_REPLICATION  merged; then
+if ! radar-schemas-tools create -P $PROPERTIES_FILE_PATH -p $KAFKA_NUM_PARTITIONS -r $KAFKA_NUM_REPLICATION  merged; then
   echo "FAILED TO CREATE TOPICS ... Retrying again"
-  if ! radar-schemas-tools cc-topic-create -c $CC_CONFIG_FILE_PATH -p $KAFKA_NUM_PARTITIONS -r $KAFKA_NUM_REPLICATION  merged; then
+  if ! radar-schemas-tools create -P $PROPERTIES_FILE_PATH -p $KAFKA_NUM_PARTITIONS -r $KAFKA_NUM_REPLICATION  merged; then
     echo "FAILED TO CREATE TOPICS"
     exit 1
   else
@@ -17,7 +17,8 @@ fi
 
 echo "Registering RADAR-base schemas..."
 
-if ! radar-schemas-tools register --force -u $CC_API_KEY -p $CC_API_SECRET "${KAFKA_SCHEMA_REGISTRY}" merged; then
+SCHEMA_REGISTRY_TIMEOUT=${SCHEMA_REGISTRY_TIMEOUT:-120}
+if ! radar-schemas-tools register --force -u "$SCHEMA_REGISTRY_API_KEY" -p "$SCHEMA_REGISTRY_API_SECRET" "${KAFKA_SCHEMA_REGISTRY}" --timeout "$SCHEMA_REGISTRY_TIMEOUT" merged; then
   echo "FAILED TO REGISTER SCHEMAS"
   exit 1
 fi
