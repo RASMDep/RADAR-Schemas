@@ -10,11 +10,7 @@ data:
     topic: questionnaire_phq8
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/phq8/phq8_armt.json
-  - type: ESM
-    topic: questionnaire_esm
+  - type: kss_mood
+    topic: questionnaire_kss_mood
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/esm/esm_armt.json
-  - type: RSES
-    topic: questionnaire_rses
-    value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/rses/rses_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/kss_mood/kss_mood.json
