@@ -25,7 +25,7 @@ data:
   - type: PHQ8
     topic: questionnaire_phq8
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/RADAR-base/RADAR-REDCap-aRMT-Definitions/master/questionnaires/phq8/phq8_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/phq8/phq8_armt.json
   - type: ESM
     topic: questionnaire_esm
     value_schema: .active.questionnaire.Questionnaire
