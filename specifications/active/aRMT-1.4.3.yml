@@ -9,6 +9,14 @@ data:
     topic: notification_thinc_it
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://github.com/RADAR-base/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/thinc_it/thinc_it_armt.json
+   - type: BDI-II
+    topic: questionnaire_bdi_ii
+    value_schema: .active.questionnaire.Questionnaire
+    questionnaire_definition_url: https://github.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/bdi_ii/bdi_ii_armt.json
+  - type: morning
+    topic: questionnaire_morning
+    value_schema: .active.questionnaire.Questionnaire
+    questionnaire_definition_url: https://raw.github.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/morning/morning_armt.json
   - type: ROMBERG_TEST
     doc: The value of the task is in milliseconds (ms).
     topic: task_romberg_test
