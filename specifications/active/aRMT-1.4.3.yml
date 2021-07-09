@@ -13,10 +13,24 @@ data:
     topic: questionnaire_bdi_ii
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://github.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/bdi_ii/bdi_ii_armt.json
-  - type: morning
+  - type: MORNING
     topic: questionnaire_morning
+    value_schema: .active.questionnaire.Questionnaire    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/morning/morning_armt.json
+  - type: EVENING    topic: questionnaire_evening
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.github.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/morning/morning_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/evening/evening_armt.json
+  - type: CHECKLIST
+    topic: questionnaire_checklist
+    value_schema: .active.questionnaire.Questionnaire
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/checklist/checklist_armt.json
+  - type: KSS_MOOD
+    topic: questionnaire_kss_mood
+    value_schema: .active.questionnaire.Questionnaire
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/kss_mood/kss_mood_armt.json
+  - type: ESS
+    topic: questionnaire_ess
+    value_schema: .active.questionnaire.Questionnaire
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/ess/ess.json     
   - type: ROMBERG_TEST
     doc: The value of the task is in milliseconds (ms).
     topic: task_romberg_test
