@@ -8,90 +8,90 @@ data:
   - type: THINC_IT
     topic: notification_thinc_it
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/thinc_it/thinc_it_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/thinc_it/thinc_it_armt.json
   - type: BDI-II
     topic: questionnaire_bdi_ii
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/bdi_ii/bdi_ii_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/bdi_ii/bdi_ii_armt.json
   - type: MORNING
     topic: questionnaire_morning
     value_schema: .active.questionnaire.Questionnaire    
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/morning/morning_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/morning/morning_armt.json
   - type: EVENING    
     topic: questionnaire_evening
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/evening/evening_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/evening/evening_armt.json
   - type: CHECKLIST
     topic: questionnaire_checklist
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/checklist/checklist_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/checklist/checklist_armt.json
   - type: KSS_MOOD
     topic: questionnaire_kss_mood
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/kss_mood/kss_mood_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/kss_mood/kss_mood_armt.json
   - type: RASMDEP_1
     topic: questionnaire_rasmdep1
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/rasmdep1/rasmdep1_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/rasmdep1/rasmdep1_armt.json
   - type: RASMDEP_2
     topic: questionnaire_rasmdep2
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/rasmdep2/rasmdep2_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/rasmdep2/rasmdep2_armt.json
   - type: ESS
     topic: questionnaire_ess
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/ess/ess.json     
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/ess/ess.json     
   - type: ROMBERG_TEST
     doc: The value of the task is in milliseconds (ms).
     topic: task_romberg_test
     value_schema: .active.task.Task
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/romberg_test/romberg_test_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/romberg_test/romberg_test_armt.json
   - type: 2MW_TEST
     doc: The value of the task is in milliseconds (ms).
     topic: task_2MW_test
     value_schema: .active.task.Task
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/2MW_test/2MW_test_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/2MW_test/2MW_test_armt.json
   - type: TANDEM_WALKING_TEST
     doc: The value of the task is in milliseconds (ms).
     topic: task_tandem_walking_test
     value_schema: .active.task.Task
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/blob/master/questionnaires/tandem_walking_test/tandem_walking_test_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/tandem_walking_test/tandem_walking_test_armt.json
   - type: PHQ8
     topic: questionnaire_phq8
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/phq8/phq8_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/phq8/phq8_armt.json
   - type: ESM
     topic: questionnaire_esm
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/esm/esm_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/esm/esm_armt.json
   - type: AUDIO
     topic: questionnaire_audio
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/audio/audio_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/audio/audio_armt.json
   - type: AUDIO_2
     topic: questionnaire_audio
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/audio_2/audio_2_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/audio_2/audio_2_armt.json
   - type: AUDIO_3
     topic: questionnaire_audio
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/audio_3/audio_3_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/audio_3/audio_3_armt.json
   - type: AUDIO_4
     topic: questionnaire_audio
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/audio_4/audio_4_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/audio_4/audio_4_armt.json
   - type: RSES
     topic: questionnaire_rses
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/rses/rses_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/rses/rses_armt.json
   - type: PERCEIVED_DEFICITS_QUESTIONNAIRE
     topic: questionnaire_perceived_deficits_questionnaire
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/perceived_deficits_questionnaire/perceived_deficits_questionnaire_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/perceived_deficits_questionnaire/perceived_deficits_questionnaire_armt.json
   - type: PATIENT_DETERMINED_DISEASE_STEP
     topic: questionnaire_patient_determined_disease_step
     value_schema: .active.questionnaire.Questionnaire
-    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/patient_determined_disease_step/patient_determined_disease_step_armt.json
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/main/questionnaires/patient_determined_disease_step/patient_determined_disease_step_armt.json
   - type: COMPLETION_LOG
     doc: Information about the completeness of each questionnaire.
     topic: questionnaire_completion_log
