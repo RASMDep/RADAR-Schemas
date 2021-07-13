@@ -27,6 +27,14 @@ data:
     topic: questionnaire_kss_mood
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/kss_mood/kss_mood_armt.json
+  - type: RASMDEP_1
+    topic: questionnaire_rasmdep1
+    value_schema: .active.questionnaire.Questionnaire
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/rasmdep1/rasmdep1_armt.json
+  - type: RASMDEP_2
+    topic: questionnaire_rasmdep2
+    value_schema: .active.questionnaire.Questionnaire
+    questionnaire_definition_url: https://raw.githubusercontent.com/GiuliaDAP/RADAR-REDCap-aRMT-Definitions/master/questionnaires/rasmdep2/rasmdep2_armt.json
   - type: ESS
     topic: questionnaire_ess
     value_schema: .active.questionnaire.Questionnaire
