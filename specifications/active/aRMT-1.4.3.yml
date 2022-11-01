@@ -14,7 +14,7 @@ data:
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/bdi_ii/bdi_ii_armt.json
   - type: MORNING
-    topic: questionnaire_morning_asessment
+    topic: questionnaire_morning_assessment
     value_schema: .active.questionnaire.Questionnaire    
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/morning/morning_armt.json
   - type: EVENING    
