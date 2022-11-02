@@ -13,7 +13,7 @@ data:
     topic: questionnaire_bdi_ii
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/bdi_ii/bdi_ii_armt.json
-  - type: MORNING
+  - type: morning
     topic: questionnaire_morning
     value_schema: .active.questionnaire.Questionnaire    
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/morning/morning_armt.json
@@ -21,7 +21,7 @@ data:
     topic: questionnaire_morning
     value_schema: .active.questionnaire.Questionnaire    
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/morning_v2/morning_v2_armt.json
-  - type: EVENING    
+  - type: evening    
     topic: questionnaire_evening
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/evening/evening_armt.json
@@ -29,7 +29,7 @@ data:
     topic: questionnaire_checklist
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/checklist/checklist_armt.json
-  - type: KSS_MOOD
+  - type: kss_mood
     topic: questionnaire_kss_mood
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/kss_mood/kss_mood_armt.json
