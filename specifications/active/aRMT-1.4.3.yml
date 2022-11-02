@@ -25,7 +25,7 @@ data:
     topic: questionnaire_evening
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/evening/evening_armt.json
-  - type: CHECKLIST
+  - type: checklist
     topic: questionnaire_checklist
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/checklist/checklist_armt.json
@@ -41,7 +41,7 @@ data:
     topic: questionnaire_rasmdep2
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/rasmdep2/rasmdep2_armt.json
-  - type: ESS
+  - type: ess
     topic: questionnaire_ess
     value_schema: .active.questionnaire.Questionnaire
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/ess/ess.json     
