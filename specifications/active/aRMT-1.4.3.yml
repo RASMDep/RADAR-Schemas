@@ -17,7 +17,7 @@ data:
     topic: questionnaire_morning
     value_schema: .active.questionnaire.Questionnaire    
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/morning/morning_armt.json
-  - type: MORNING_INTERVENTION
+  - type: morning_v2
     topic: questionnaire_morning
     value_schema: .active.questionnaire.Questionnaire    
     questionnaire_definition_url: https://raw.githubusercontent.com/RASMdep/RADAR-REDCap-aRMT-Definitions/main/questionnaires/morning_v2/morning_v2_armt.json
